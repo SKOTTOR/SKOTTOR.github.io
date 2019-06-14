@@ -13,190 +13,40 @@
         body {
     background: rgb(240, 185, 237);
 }
-
-.Toolbar {
-    float: left;
-    font-family: 'Trebuchet MS'; 
-    font-size: 14px;
-    font-variant: small-caps;
-    text-align: center;
-    background: #F2F7FE;
-    padding: 10px 15px 3px 10px;
-    margin-bottom: 1px;
-    margin-right: 1px;
-    border: 1px solid #7B899B;
-}
-
-.Toolbar button {
-    padding: 6px;
-    margin: 7px 2px;
-    font-variant: normal;
-    font-size: 12px;
-}
-
-.CanvasContainer {
-    clear: both;
-}
-
-canvas {
-    border: 1px solid #7B899B;
-}
-
-img {
-    padding: 2px;
-    border: 2px solid #F2F7FE;
-}
-
-img:hover {
-    border: 2px groove #E4F0FE;
-    background: white;
-}
-
-
-img.Selected {
-    border: 2px groove #E4F0FE;
-}
-
-#savedCopyContainer {
-    display: none;
-}
-
-#savedCopyContainer img {
-    width: 250px;
-    height: 150px;
-}
-
- 
-
     </style>
-    <script>
-        var canvas;
-var context;
-
-window.onload = function() {
-      canvas = document.getElementById("drawingCanvas");
-      context = canvas.getContext("2d");
-       
-      // Подключаем требуемые для рисования события
-      canvas.onmousedown = startDrawing;
-      canvas.onmouseup = stopDrawing;
-      canvas.onmouseout = stopDrawing;
-      canvas.onmousemove = draw;
-   }
-   var previousColorElement;
-
-function changeColor(color, imgElement)
-{
-    // 	Меняем текущий цвет рисования
-	context.strokeStyle = color;
-	
-	// Меняем стиль элемента <img>, по которому щелкнули
-	imgElement.className = "Selected";
-	
-	// Возвращаем ранее выбранный элемент <img> в нормальное состояние
-	if (previousColorElement != null)
-	   previousColorElement.className = "";
-	   
-	previousColorElement = imgElement;
-}
-var previousThicknessElement;
-
-function changeThickness (thickness, imgElement)
-{
-    // Изменяем текущую толщину линии
-	context.lineWidth = thickness;
-	
-	// Меняем стиль элемента <img>, по которому щелкнули
-	imgElement.className = "Selected";
-	
-	// Возвращаем ранее выбранный элемент <img> в нормальное состояние
-	if (previousThicknessElement != null)
-	   previousThicknessElement.className = "";
-	   
-	previousThicknessElement = imgElement;
-}
-function startDrawing(e) {
-	// Начинаем рисовать
-	isDrawing = true;
-	
-	// Создаем новый путь (с текущим цветом и толщиной линии) 
-	context.beginPath();
-	
-	// Нажатием левой кнопки мыши помещаем "кисть" на холст
-	context.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
-}
-function draw(e) {
-	if (isDrawing == true)
-	{
-	  	// Определяем текущие координаты указателя мыши
-		var x = e.pageX - canvas.offsetLeft;
-		var y = e.pageY - canvas.offsetTop;
-		
-		// Рисуем линию до новой координаты
-		context.lineTo(x, y);
-		context.stroke();
-	}
-}
-function stopDrawing() {
-    isDrawing = false;	
-}
-function clearCanvas() {
-	context.clearRect(0, 0, canvas.width, canvas.height);
-}
-var url = canvas.toDataURL("image/jpeg");
-    </script>
+    
 </head>
 <body style='margin-left: 6%; margin-right: 6%'>
     
-        <div class="w3-container">
-                <h1 class="w3-text-pink w3-center w3-animate-top">IGOR'S THEME</h1>
+        <div class="w3-container; w3-spin">
+                <h1 class="w3-text-pink w3-center w3-animate-top">TYLER, THE CREATOR</h1>
               </div>
 
-    
-        
-       
         </div>
 
-        <div class="w3-row">
-            <div class="w3-col s6 w3-center">
-                    <div class="Toolbar">
-                            - Цвет -<br>
-                            <img id="redPen" src="http://professorweb.ru/downloads/pen_red.gif" alt="Красная кисть" onclick="changeColor('rgb(212,21,29)', this)">
-                            <img id="greenPen" src="http://professorweb.ru/downloads/pen_green.gif" alt="Зеленая кисть" onclick="changeColor('rgb(131,190,61)', this)"> 
-                            <img id="bluePen" src="http://professorweb.ru/downloads/pen_blue.gif" alt="Синяя кисть" onclick="changeColor('rgb(0,86,166)', this)">
-                    </div>
-                    <div class="Toolbar">
-                            - Толщина -<br>
-                            <img src="http://professorweb.ru/downloads/pen_thin.gif" alt="Тонкая кисть" onclick="changeThickness(1, this)">
-                            <img src="http://professorweb.ru/downloads/pen_medium.gif" alt="Нормальная кисть" onclick="changeThickness(5, this)"> 
-                            <img src="http://professorweb.ru/downloads/pen_thick.gif" alt="Толстая кисть" onclick="changeThickness(10, this)">
-                    </div>
-                    <div class="CanvasContainer">
-                            <canvas id="drawingCanvas" width="300" height="300"></canvas>
-                    </div>
-                    <div class="Toolbar">
-                            - Операции-<br>
-                            <button onclick="saveCanvas()">Сохранить содержимое Canvas</button>
-                            <button onclick="clearCanvas()">Очистить Canvas</button>
-                            <div id="savedCopyContainer">
-                               <img id="savedImageCopy"><br>
-                               Щелкните правой кнопкой мыши для сохранения ...
-                            </div>
-                    </div> 
             </div>
             <div class="w3-col s6 w3-center"><p><img width=400px; height=215px src="https://media3.giphy.com/media/3ov9k4TqnEL42yWjBK/giphy.gif"></p></div>
             
           </div>
 
           <img width='125px'; height='125px'src="https://pbs.twimg.com/profile_images/1129032835006812160/FyzA9DWR_400x400.jpg">
+          <img width='215px'; height='125'src='https://media.pitchfork.com/photos/5cd9cc0a85a35d4770e63de5/2:1/w_790/Tyler-the-Creator.jpg'>
           
-          
-        <button onclick="location.href='https://www.instagram.com/feliciathegoat/?hl=ru'"class="w3-button w3-hover-pink">Instagram</button>
+        <button onclick="location.href='https://www.instagram.com/feliciathegoat/?hl=ru'"class="w3-button w3-pink">Instagram</button>
+        <button onclick="location.href='https://twitter.com/tylerthecreator'"class="w3-button w3-pink">Twitter</button>
+        <button onclick="location.href='https://www.youtube.com/channel/UCsQBsZJltmLzlsJNG7HevBg'" class="w3-button w3-pink">YouTube</button>
+        <button onclick="location.href='https://en.wikipedia.org/wiki/Tyler,_the_Creator'" class="w3-button w3-pink">Wiki</button>
     <h6 class="w3-text-pink">
         by SKOTTOR
     </h6>    
     <audio autoplay='autoplay'>
             <source src="https://cdn.drivemusic.me/dl/online/QdVM19iPz49sc_APix38ww/1560523586/download_music/2019/05/tyler-the-creator-earfquake.mp3" type="audio/ogg; codecs=vorbis">
-    </audio>
+    </audio><div class='w3-spin'>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/FUXX55WqYZs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    
+    </div>
+    <img height=289 src="https://media0.giphy.com/media/OjJ93PklG2gCs/source.gif">
+    <img src="https://media3.giphy.com/media/CvQyHcG8jUCLm/giphy.gif">
+    <img width=178px; height=290 src="http://38.media.tumblr.com/7c6093f809d379f63f0f5abbc54488d4/tumblr_mia0xm0emU1r801cpo1_r1_400.gif">
 </body>
 </html>
